@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Success</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/styles.css") }}">
+    <script type="text/javascript" src="{{ url_for('static', filename="js/script.js") }}"></script>
+  </head>
+  <body>
+    <p class = "right">Welcome {{ session['user'][0]['first_name'] }}
+    <a href="/logout">Log Out</a></p>
+    <h1>CodingDojo Wall</h1>
+
+    <form action="/post" method="post">
+      <input type="hidden" name="hidden" value="messages">
+      <p>Post a message</p>
+      <textarea name="message" cols="125" rows="4">Message</textarea>
+      <input type="submit" class="right" style="background-color: green" value="Post a message">
+    </form>
+
+    <div class="posts">
+      {% for user_posts in users_posts: %}
+       <p>{{ user_posts['first_name'] }} {{ user_posts['last_name'] }} - {{ user_posts['created_at'] }}</p>
+       <p>{{ user_posts['message']}}</p>
+
+       <div class="comments">
+         {% for user_comments in users_comments%}
+            {% if user_posts['id'] == user_comments['message_id'] %}
+               <p>{{ user_comments['first_name'] }} {{ user_comments['last_name'] }} - {{ user_comments['created_at'] }}</p>
+               <p>{{ user_comments['comment']}}</p>
+            {% endif %}
+
+        {% endfor %}
+
+        <form action="/post" method="post">
+          <input type="hidden" name="hidden" value="comments">
+          <input type="hidden" name="msg_id" value="{{ user_posts['id'] }}">
+          <p>Post a comment</p>
+          <textarea name="comment" cols="110" rows="4">Comment</textarea>
+          <input type="submit" value="Post a comment">
+        </form>
+
+      </div>
+
+
+
+      {% endfor %}
+    </div>
+  </body>
+</html>

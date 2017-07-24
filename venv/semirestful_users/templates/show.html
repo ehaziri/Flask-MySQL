@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Show User</title>
+  </head>
+  <body>
+    <h1>This User!</h1>
+    {% for user in this_user %}
+      <ul>
+        <li>ID: {{ user['id'] }}</li>
+        <li>Name: {{ user['first_name'] }}</li>
+        <li>Surname: {{ user['last_name'] }}</li>
+        <li>Email: {{ user['email'] }}</li>
+        <li>Created at: {{ user['created_at'] }}</li>
+      </ul>
+
+        <a href="/users/{{ user['id'] }}/edit">Edit</a>
+        <a href="/users/{{ user['id'] }}/delete">Delete</a>
+    {% endfor %}
+
+  </body>
+</html>

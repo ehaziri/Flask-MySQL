@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello Flask</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/styles.css") }}">
+    <script type="text/javascript" src="{{ url_for('static', filename="js/script.js") }}"></script>
+  </head>
+  <body>
+
+    <h3>Submitted info</h3>
+    <p>Name: <span class="right"> {{ name }} </span></p>
+    <p>Dojo Location: <span class="right"> {{ location }} </span></p>
+    <p>Favorite Language: <span class="right">{{ language }} </span></p>
+    <p>Comment: <span class="right"> {{ comment }} </span></p>
+    <form action='/'>
+     <input type="submit" value="Go Back" class="right">
+    </form>
+  </body>
+</html>

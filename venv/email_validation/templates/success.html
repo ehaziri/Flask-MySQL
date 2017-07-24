@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello Flask</title>
+  </head>
+  <body>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    {{ all_emails }}
+    <h1>These are all email addresses entered!</h1>
+      {% for email in all_emails: %}
+         <p>Email: {{ email['email'] }} -- {{ email['created_at'] }}</p>
+
+        <form action="/{{ email['id'] }}" method='post'>
+          <input type="submit" value="Delete">
+        </form>
+
+        <hr>
+      {% endfor %}
+
+  </body>
+</html>

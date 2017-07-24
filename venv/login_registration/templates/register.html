@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello Flask</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/styles.css") }}">
+    <script type="text/javascript" src="{{ url_for('static', filename="js/script.js") }}"></script>
+  </head>
+  <body>
+
+    <form action='/register' method='post'>
+      <p>
+      <label for="first_name">First Name: </label>
+      <input type='text' name='first_name' class="right">
+     </p>
+
+     <p>
+      <label for="last_name">Last Name: </label>
+      <input type='text' name='last_name' class="right">
+     </p>
+
+     <p>
+      <label for="email">Email: </label>
+      <input type='text' name='email' class="right">
+     </p>
+
+     <p>
+      <label for="password">Password: </label>
+      <input type='text' name='password' class="right">
+    </p>
+
+    <p>
+     <label for="confirm_password">Confirm Password: </label>
+     <input type='text' name='confirm_password' class="right">
+   </p>
+
+    <p>
+      <input type='submit' value='Submit' class="right">
+    </p>
+    </form>
+    <div class="flashed-messages">
+      {% with messages = get_flashed_messages() %}
+      <ul class="flashes">
+        {% if messages %}
+          {% for message in messages %}
+            <li>{{message}}</li>
+          {% endfor %}
+        {% endif %}
+        </ul>
+      {% endwith %}
+    </div>
+
+  </body>
+</html>
